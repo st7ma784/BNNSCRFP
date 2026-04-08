@@ -1,0 +1,149 @@
+\section{Setup and Notation}
+
+Let $\mathcal{X} \subseteq \mathbb{R}^{d_0}$ denote the input space and $\mathcal{Y}$ the output space.
+A BNN with $L$ layers is parameterized by:
+\begin{align}
+\mathbf{W} &= \{W_1, \ldots, W_L\} \quad W_l \in \{-1, +1\}^{d_l \times d_{l-1}} \\
+\mathbf{b} &= \{b_1, \ldots, b_L\} \quad b_l \in \mathbb{R}^{d_l}
+\end{align}
+
+Forward pass:
+\begin{align}
+z^{(l)} &= W_l x^{(l-1)} + b_l \\
+x^{(l)} &= \text{sign}(z^{(l)}) \in \{-1, +1\}^{d_l}
+\end{align}
+
+---
+
+\section{Path-Sum Representation}
+
+\subsection{Routing Pattern}
+For input $x \in \mathcal{X}$, define the \emph{routing pattern} as the sequence of active (sign-determined) behaviors:
+$$A(x) = \{a_1(x), \ldots, a_L(x)\} \quad a_l(x) \in \{-1, +1\}^{d_l}$$
+
+This represents a \emph{discrete path} through the network's $2^{\sum_l d_l}$ possible neuron combinations.
+
+\subsection{Path-Sum Model}
+Express the BNN output as a weighted sum over paths:
+$$f(x) = \sum_{p \in \mathcal{P}(x)} w_p \cdot g_p(x)$$
+where:
+\begin{itemize}
+  \item $\mathcal{P}(x)$ is the set of active paths induced by routing pattern $A(x)$
+  \item $w_p$ are learned weights associated with path $p$
+  \item $g_p(x)$ is a path-specific function
+\end{itemize}
+
+---
+
+\section{Key Theorem: Exponential Routing Capacity}
+
+\subsection{Theorem 1}
+Consider an $L$-layer BNN with widths $d_1, \ldots, d_L$ and binary activations. 
+The number of distinct routing patterns realizable by the network is upper bounded by:
+$$|R| \leq \prod_{l=1}^{L} 2^{d_l}$$
+
+and grows \emph{exponentially in depth and width}.
+
+\subsection{Proof Sketch}
+Each binary neuron at layer $l$ contributes a binary decision: either $+1$ or $-1$.
+Across all neurons in layer $l$, there are $2^{d_l}$ possible configurations.
+Composing across $L$ layers, the total number of distinct routing states is at most $\prod_{l=1}^L 2^{d_l}$.
+
+\subsection{Implication}
+Even with 1-bit weights, BNNs retain \textbf{exponential expressive routing capacity}.
+This explains their effectiveness despite aggressive quantization.
+
+---
+
+\section{Connection to SCRFP and MoE}
+
+\subsection{Sparse Gating}
+Binary activation patterns act as \emph{sparse binary gates} on features.
+Each routing pattern $A(x)$ selects a specific subset of "experts" (neuron combinations).
+
+\subsection{Equivalence}
+A trained BNN with $L$ layers and width $d$ can be reinterpreted as a MoE with:
+\begin{itemize}
+  \item Number of experts: $\leq \prod_{l=1}^L 2^{d_l}$
+  \item Gate function: Binary routing via sign activations
+  \item Sparsity: Only active neurons contribute
+\end{itemize}
+
+---
+
+\section{Visualization Strategy}
+
+\subsection{Method 1: Layer Activation Heatmap}
+For a batch of inputs, record the binary activation patterns at each layer:
+$$\text{Heatmap}_{l} = [a_l(x_1) \mid a_l(x_2) \mid \cdots \mid a_l(x_N)]^T$$
+
+This reveals:
+\begin{itemize}
+  \item Structured activation patterns
+  \item Clustering by class
+  \item Sparsity and redundancy
+\end{itemize}
+
+\subsection{Method 2: Path Overlap Graph}
+Define Jaccard similarity between routing patterns:
+$$\text{sim}(x_i, x_j) = \frac{|A(x_i) \cap A(x_j)|}{|A(x_i) \cup A(x_j)|}$$
+
+Visualize as:
+\begin{itemize}
+  \item Adjacency matrix (heatmap)
+  \item t-SNE embedding of routing vectors
+  \item Network graph with inputs as nodes, similarity as edges
+\end{itemize}
+
+\subsection{Method 3: Expert Activation Histogram}
+Group early-layer neurons into "expert" clusters.
+Histogram activation frequency per class and per expert.
+
+---
+
+\section{Minimal Experiment Plan}
+
+\subsection{Setup}
+\begin{itemize}
+  \item Dataset: MNIST (28×28, 10 classes)
+  \item Model: 3-layer BNN (784 → 256 → 256 → 10)
+  \item Training: Standard supervised learning with binarized weights
+  \item Epochs: 50–100, learning rate: 0.01
+\end{itemize}
+
+\subsection{Measurements}
+\begin{enumerate}
+  \item Accuracy on test set
+  \item Sparsity of activation patterns (fraction of active neurons)
+  \item Routing similarity within classes vs. across classes
+  \item Effective number of distinct routing patterns discovered
+\end{enumerate}
+
+\subsection{Outputs}
+\begin{enumerate}
+  \item Activation heatmaps per layer
+  \item Similarity matrices / t-SNE plots
+  \item Histogram of expert activations
+  \item Accuracy vs. routing diversity plot
+\end{enumerate}
+
+---
+
+\section{Expected Results}
+
+\begin{itemize}
+  \item \textbf{Strong clustering} in routing space: Samples from the same class should follow similar paths.
+  \item \textbf{Sparse activation}: Few neurons active per sample (typically 30–50\% of bandwidth).
+  \item \textbf{Emergent experts}: Groups of neurons specializing in class-specific routing.
+  \item \textbf{Interpretability}: Visualization should clearly show discrete decision boundaries.
+\end{itemize}
+
+---
+
+\section{Conclusion}
+
+Binary Neural Networks are fundamentally discrete routing systems with exponential capacity in their path-sum decomposition.
+By connecting BNNs to SCRFP and Mixture of Experts, we unify several quantization and modularity perspectives.
+Our proposed visualizations make this structure observable and testable, enabling new interpretability and compression techniques.
+
+\end{document}

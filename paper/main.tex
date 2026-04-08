@@ -1,0 +1,35 @@
+\documentclass[11pt]{article}
+\usepackage[utf-8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+
+\title{Binary Neural Networks as Discrete Path Decompositions: \\
+A Formalization and SCRFP Perspective}
+
+\author{}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+We formalize Binary Neural Networks (BNNs) as discrete path-sum models and connect them to SCRFP. 
+We prove equivalence to sparse binary-gated Mixture of Experts and propose experiments and visualizations 
+that expose the implicit routing structure in quantized networks.
+\end{abstract}
+
+\tableofcontents
+
+\input{bnn_discrete_paths.tex}
+
+\bibliographystyle{plain}
+\bibliography{references}
+
+\end{document}
