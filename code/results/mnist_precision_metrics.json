@@ -1,0 +1,50 @@
+{
+  "32": {
+    "unique_patterns_l1": 1000,
+    "unique_patterns_l2": 1000,
+    "entropy_l1": 9.965784140392591,
+    "entropy_l2": 9.965784140392591,
+    "sparsity_l1": 0.5201953139305114,
+    "sparsity_l2": 0.5150820307731628
+  },
+  "16": {
+    "unique_patterns_l1": 1000,
+    "unique_patterns_l2": 1000,
+    "entropy_l1": 9.965784140392591,
+    "entropy_l2": 9.965784140392591,
+    "sparsity_l1": 0.5190078139305114,
+    "sparsity_l2": 0.5153320288658142
+  },
+  "8": {
+    "unique_patterns_l1": 1000,
+    "unique_patterns_l2": 1000,
+    "entropy_l1": 9.965784140392591,
+    "entropy_l2": 9.965784140392591,
+    "sparsity_l1": 0.5081484379768372,
+    "sparsity_l2": 0.5171367173194885
+  },
+  "4": {
+    "unique_patterns_l1": 1000,
+    "unique_patterns_l2": 1000,
+    "entropy_l1": 9.965784140392591,
+    "entropy_l2": 9.965784140392591,
+    "sparsity_l1": 0.5144804701805115,
+    "sparsity_l2": 0.5194062476158142
+  },
+  "2": {
+    "unique_patterns_l1": 1000,
+    "unique_patterns_l2": 1000,
+    "entropy_l1": 9.965784140392591,
+    "entropy_l2": 9.965784140392591,
+    "sparsity_l1": 0.5805781221389771,
+    "sparsity_l2": 0.5867851567268372
+  },
+  "1": {
+    "unique_patterns_l1": 1,
+    "unique_patterns_l2": 1,
+    "entropy_l1": -1.4426951601859516e-10,
+    "entropy_l2": -1.4426951601859516e-10,
+    "sparsity_l1": 1.0,
+    "sparsity_l2": 1.0
+  }
+}

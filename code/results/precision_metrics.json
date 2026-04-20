@@ -1,0 +1,50 @@
+{
+  "32": {
+    "layer_1_unique_patterns": 1000.0,
+    "layer_1_entropy": 9.965784284662018,
+    "layer_1_sparsity": 0.498410165309906,
+    "layer_2_unique_patterns": 1000.0,
+    "layer_2_entropy": 9.965784284662018,
+    "layer_2_sparsity": 0.4741171896457672
+  },
+  "16": {
+    "layer_1_unique_patterns": 1000.0,
+    "layer_1_entropy": 9.965784284662018,
+    "layer_1_sparsity": 0.498410165309906,
+    "layer_2_unique_patterns": 1000.0,
+    "layer_2_entropy": 9.965784284662018,
+    "layer_2_sparsity": 0.4741171896457672
+  },
+  "8": {
+    "layer_1_unique_patterns": 1000.0,
+    "layer_1_entropy": 9.965784284662018,
+    "layer_1_sparsity": 0.49882811307907104,
+    "layer_2_unique_patterns": 1000.0,
+    "layer_2_entropy": 9.965784284662018,
+    "layer_2_sparsity": 0.4865078032016754
+  },
+  "4": {
+    "layer_1_unique_patterns": 1000.0,
+    "layer_1_entropy": 9.965784284662018,
+    "layer_1_sparsity": 0.498410165309906,
+    "layer_2_unique_patterns": 1000.0,
+    "layer_2_entropy": 9.965784284662018,
+    "layer_2_sparsity": 0.4741171896457672
+  },
+  "2": {
+    "layer_1_unique_patterns": 1000.0,
+    "layer_1_entropy": 9.965784284662018,
+    "layer_1_sparsity": 0.498410165309906,
+    "layer_2_unique_patterns": 1000.0,
+    "layer_2_entropy": 9.965784284662018,
+    "layer_2_sparsity": 0.4741171896457672
+  },
+  "1": {
+    "layer_1_unique_patterns": 1000.0,
+    "layer_1_entropy": 9.965784284662018,
+    "layer_1_sparsity": 0.498410165309906,
+    "layer_2_unique_patterns": 1000.0,
+    "layer_2_entropy": 9.965784284662018,
+    "layer_2_sparsity": 0.4741171896457672
+  }
+}
